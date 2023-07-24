@@ -12,8 +12,11 @@ import Forward from "@/components/Forward";
 import Link from "next/link";
 import { Home, Search } from "lucide-react";
 
+const URL = "https://spotify-clone-sepia-sigma.vercel.app";
+// const URL="http://localhost:3000";
+
 async function fetchSpotifyAccessToken(): Promise<AccessToken> {
-  const res = await fetch("http://localhost:3000/api/token", {
+  const res = await fetch(`${URL}/api/token`, {
     cache: "no-store",
   });
 

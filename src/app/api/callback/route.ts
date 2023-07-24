@@ -8,7 +8,8 @@ export async function GET(request: Request) {
     grant_type: "authorization_code",
     client_id: "a2b1b5e5371c4cc6964a5737a04046ee",
     client_secret: "15d61170883144449553e2529850c153",
-    redirect_uri: "http://localhost:3000/api/callback",
+    // redirect_uri: "http://localhost:3000/api/callback",
+    redirect_uri: "https://spotify-clone-sepia-sigma.vercel.app/api/callback",
   };
   const { searchParams } = new URL(request.url);
   const code = searchParams.get("code");

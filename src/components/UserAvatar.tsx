@@ -13,7 +13,7 @@ export default function UserAvatar({ name }: { name: string }) {
       } items-center space-x-3`}
     >
       <h1 className="text-xl md:text-3xl font-semibold">Welcome {name}</h1>
-      <Avatar className="h-8 w-8">
+      <Avatar className="h-8 w-8 md:h-10 md:w-10">
         {/* temp profile */}
         <AvatarImage src={""} />
         <AvatarFallback>{name[0]}</AvatarFallback>

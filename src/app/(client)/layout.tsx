@@ -7,6 +7,9 @@ import { UserPlaylist } from "@/types/playlist";
 import SearchBar from "@/components/SearchBar";
 import UserAvatar from "@/components/UserAvatar";
 
+const URL = "https://spotify-clone-sepia-sigma.vercel.app";
+// const URL="http://localhost:3000";
+
 async function fetchUser(
   accessToken: string | undefined
 ): Promise<User | null> {
@@ -20,7 +23,7 @@ async function fetchUser(
 
   // Check if the response is successful
   if (!res.ok) {
-    redirect("http://localhost:3000/api/callback?refresh=true");
+    redirect(`${URL}/api/callback?refresh=true`);
     // Throw an error if the request fails
   }
 

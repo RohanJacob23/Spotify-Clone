@@ -21,7 +21,8 @@ export default function SideNav({
     client_id: "a2b1b5e5371c4cc6964a5737a04046ee",
     scope:
       "user-read-private user-read-email user-top-read playlist-read-private",
-    redirect_uri: "http://localhost:3000/api/callback",
+    // redirect_uri: "http://localhost:3000/api/callback",
+    redirect_uri: "https://spotify-clone-sepia-sigma.vercel.app/api/callback",
     state: "12344555",
   }).toString();
   const authUrl = `https://accounts.spotify.com/authorize?${query}`;

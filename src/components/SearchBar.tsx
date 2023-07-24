@@ -69,13 +69,13 @@ export default function SearchBar({ token }: { token: string | undefined }) {
           pathname === "search" ? "block" : "hidden"
         } relative w-full flex items-center md:space-x-3 space-x-1`}
       >
-        <Search className="absolute w-5 md:w-auto top-1.5 left-2 md:left-5" />
+        <Search className="absolute w-5 md:w-auto md:top-1.5 md:left-5 top-2 left-2" />
         <Input
           type="text"
           placeholder="What do you want to listen to?"
           onChange={(e) => setSearch(e.target.value)}
           value={search}
-          className="rounded-full bg-[#2B3839] hover:border-white/10 focus:border-2 focus:border-white border-2 border-transparent p-3 pl-7 md:p-5 md:pl-10"
+          className="rounded-full bg-[#2B3839] hover:border-white/10 focus:border-2 focus:border-white border-2 border-transparent p-3 pl-7 md:p-5 md:pl-10 md:w-72"
         />
 
         <Popover open={open} onOpenChange={setOpen}>
