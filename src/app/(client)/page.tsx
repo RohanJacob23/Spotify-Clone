@@ -12,11 +12,9 @@ import Forward from "@/components/Forward";
 import Link from "next/link";
 import { Home, Search } from "lucide-react";
 
-const URL = "https://spotify-clone-sepia-sigma.vercel.app";
-// const URL="http://localhost:3000";
-
 async function fetchSpotifyAccessToken(): Promise<AccessToken> {
-  const res = await fetch(`${URL}/api/token`, {
+  console.log(process.env.URL);
+  const res = await fetch(`${process.env.URL}/api/token`, {
     cache: "no-store",
   });
 
@@ -113,12 +111,14 @@ export default async function page() {
           >
             <Home className="w-5 h-5" />
           </Link>
-          <Link
-            href="/search"
-            className="flex justify-center items-center w-9 h-9 bg-black rounded-full"
-          >
-            <Search className="w-5 h-5" />
-          </Link>
+          {token && (
+            <Link
+              href="/search"
+              className="flex justify-center items-center w-9 h-9 bg-black rounded-full"
+            >
+              <Search className="w-5 h-5" />
+            </Link>
+          )}
         </div>
 
         {/* forward and backward navigation */}
@@ -150,50 +150,53 @@ export default async function page() {
           </div>
         </ScrollArea>
       </section>
+      {token && (
+        <>
+          <section className="flex flex-col mt-10">
+            <h1 className="text-xl md:text-2xl font-semibold hover:underline cursor-pointer mb-3">
+              Your Top Artists
+            </h1>
 
-      <section className="flex flex-col mt-10">
-        <h1 className="text-xl md:text-2xl font-semibold hover:underline cursor-pointer mb-3">
-          Your Top Artists
-        </h1>
-
-        {/* user's top artists card */}
-        <ScrollArea className="w-full">
-          <div className="flex flex-row gap-2">
-            {artists?.items.map((artist) => (
-              <div key={artist.id} className="w-36 md:w-auto">
-                <SpotifyCard
-                  image={artist.images[0]}
-                  name={artist.name}
-                  type={artist.type}
-                />
+            {/* user's top artists card */}
+            <ScrollArea className="w-full">
+              <div className="flex flex-row gap-2">
+                {artists?.items.map((artist) => (
+                  <div key={artist.id} className="w-36 md:w-auto">
+                    <SpotifyCard
+                      image={artist.images[0]}
+                      name={artist.name}
+                      type={artist.type}
+                    />
+                  </div>
+                ))}
+                <ScrollBar orientation="horizontal" />
               </div>
-            ))}
-            <ScrollBar orientation="horizontal" />
-          </div>
-        </ScrollArea>
-      </section>
+            </ScrollArea>
+          </section>
 
-      <section className="flex flex-col mt-10">
-        <h1 className="text-xl md:text-2xl font-semibold hover:underline cursor-pointer mb-3">
-          Your Top Tracks
-        </h1>
+          <section className="flex flex-col mt-10">
+            <h1 className="text-xl md:text-2xl font-semibold hover:underline cursor-pointer mb-3">
+              Your Top Tracks
+            </h1>
 
-        {/* user's top artists card */}
-        <ScrollArea className="w-full">
-          <div className="flex flex-row gap-2">
-            {tracks?.items.map((track) => (
-              <div key={track.id} className="w-36 md:w-auto">
-                <SpotifyCard
-                  image={track.album.images[0]}
-                  name={track.name}
-                  type={track.type}
-                />
+            {/* user's top artists card */}
+            <ScrollArea className="w-full">
+              <div className="flex flex-row gap-2">
+                {tracks?.items.map((track) => (
+                  <div key={track.id} className="w-36 md:w-auto">
+                    <SpotifyCard
+                      image={track.album.images[0]}
+                      name={track.name}
+                      type={track.type}
+                    />
+                  </div>
+                ))}
+                <ScrollBar orientation="horizontal" />
               </div>
-            ))}
-            <ScrollBar orientation="horizontal" />
-          </div>
-        </ScrollArea>
-      </section>
+            </ScrollArea>
+          </section>
+        </>
+      )}
     </section>
   );
 }

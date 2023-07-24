@@ -25,7 +25,9 @@ export async function GET(request: Request) {
   } else if (refresh) {
     const refresh_token = cookies().get("refresh_token");
     delete postBody.code;
-    postBody.redirect_uri = "http://localhost:3000/api/callback";
+    // postBody.redirect_uri = "http://localhost:3000/api/callback";
+    postBody.redirect_uri =
+      "https://spotify-clone-sepia-sigma.vercel.app/api/callback";
     postBody.grant_type = "refresh_token";
     postBody.refresh_token = refresh_token?.value;
     const res = await fetchAccessToken(postBody);

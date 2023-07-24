@@ -2,10 +2,13 @@ import Backward from "@/components/Backward";
 import Forward from "@/components/Forward";
 import SearchResults from "@/components/SearchResults";
 import { Home, Search } from "lucide-react";
+import { cookies } from "next/headers";
 import Link from "next/link";
 import React from "react";
 
 export default function page() {
+  const cookieStore = cookies();
+  const token = cookieStore.get("token");
   return (
     <section className="h-full w-full overflow-y-scroll bg-background-variant-color rounded-lg px-1.5 md:px-3 py-4">
       <div className="md:hidden flex items-center justify-between mb-3">
@@ -17,12 +20,14 @@ export default function page() {
           >
             <Home className="w-5 h-5" />
           </Link>
-          <Link
-            href="/search"
-            className="flex justify-center items-center w-9 h-9 bg-black rounded-full"
-          >
-            <Search className="w-5 h-5" />
-          </Link>
+          {token && (
+            <Link
+              href="/search"
+              className="flex justify-center items-center w-9 h-9 bg-black rounded-full"
+            >
+              <Search className="w-5 h-5" />
+            </Link>
+          )}
         </div>
 
         {/* forward and backward navigation */}

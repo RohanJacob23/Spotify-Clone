@@ -9,7 +9,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
-import { type } from "os";
 
 export default function SpotifyCard({
   image,

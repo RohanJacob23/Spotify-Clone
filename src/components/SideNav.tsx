@@ -16,16 +16,6 @@ export default function SideNav({
 }: {
   userPlaylists: UserPlaylist | null;
 }) {
-  const query = new URLSearchParams({
-    response_type: "code",
-    client_id: "a2b1b5e5371c4cc6964a5737a04046ee",
-    scope:
-      "user-read-private user-read-email user-top-read playlist-read-private",
-    // redirect_uri: "http://localhost:3000/api/callback",
-    redirect_uri: "https://spotify-clone-sepia-sigma.vercel.app/api/callback",
-    state: "12344555",
-  }).toString();
-  const authUrl = `https://accounts.spotify.com/authorize?${query}`;
   return (
     <section className="hidden md:flex flex-col space-y-3 h-full w-3/12 font-semibold">
       {/* upper section */}
@@ -39,19 +29,14 @@ export default function SideNav({
         </li>
 
         {/* search */}
-        <li>
-          <Link className="flex space-x-4 py-2 px-3" href="/search">
-            <Search />
-            <h1>search</h1>
-          </Link>
-        </li>
-
-        <li>
-          <Link className="flex space-x-4 py-2 px-3" href={authUrl}>
-            <Library />
-            <h1>Account</h1>
-          </Link>
-        </li>
+        {userPlaylists && (
+          <li>
+            <Link className="flex space-x-4 py-2 px-3" href="/search">
+              <Search />
+              <h1>search</h1>
+            </Link>
+          </li>
+        )}
       </ul>
       {/* bottom nav */}
       <section className="flex flex-col h-full rounded-lg p-2 bg-background-variant-color overflow-hidden">

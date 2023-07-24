@@ -6,9 +6,7 @@ import { redirect } from "next/navigation";
 import { UserPlaylist } from "@/types/playlist";
 import SearchBar from "@/components/SearchBar";
 import UserAvatar from "@/components/UserAvatar";
-
-const URL = "https://spotify-clone-sepia-sigma.vercel.app";
-// const URL="http://localhost:3000";
+import SyncSpotify from "@/components/SyncSpotify";
 
 async function fetchUser(
   accessToken: string | undefined
@@ -23,7 +21,7 @@ async function fetchUser(
 
   // Check if the response is successful
   if (!res.ok) {
-    redirect(`${URL}/api/callback?refresh=true`);
+    redirect(`${process.env.URL}/api/callback?refresh=true`);
     // Throw an error if the request fails
   }
 
@@ -71,7 +69,7 @@ export default async function ClientLayout({
           <div>
             <SearchBar token={token?.value} />
           </div>
-          {user && <UserAvatar name={user.display_name} />}
+          {user ? <UserAvatar name={user.display_name} /> : <SyncSpotify />}
         </div>
 
         {children}
