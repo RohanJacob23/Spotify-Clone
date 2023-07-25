@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { Images } from "@/types/general";
 import {
@@ -15,11 +13,10 @@ export default function SpotifyCard({
   name,
   type,
 }: {
-  image: Images;
+  image?: Images;
   name: string;
-  type: string;
+  type?: string;
 }) {
-  // console.log(item);
   return (
     <Card className="min-w-[7rem] md:min-w-[12rem] w-full h-full flex flex-col bg-background-color border-none">
       <div className="relative p-3">

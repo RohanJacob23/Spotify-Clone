@@ -78,10 +78,24 @@
   html,
   body,
   main {
-    @apply min-h-screen h-full;
+    @apply h-full;
   }
   body {
     @apply bg-background-color text-foreground;
+  }
+
+  .playButton {
+    animation: showPlayButton 0.5s ease-out;
+  }
+  @keyframes showPlayButton {
+    0% {
+      opacity: 0;
+      transform: translateY(1.25rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   /* Firefox */
   * {

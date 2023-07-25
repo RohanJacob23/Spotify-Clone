@@ -2,6 +2,8 @@ import { fetchAccessToken } from "@/util/functions/fetchAccessToken";
 import { NextResponse } from "next/server";
 import { PostBody } from "@/types/general";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: Request) {
   const postBody: PostBody = {
     grant_type: "client_credentials",

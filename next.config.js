@@ -3,6 +3,7 @@ const nextConfig = {
   images: {
     domains: [
       "*",
+      "cloud.appwrite.io",
       "lineup-images.scdn.co",
       "images-ak.spotifycdn.com",
       "i.scdn.co",

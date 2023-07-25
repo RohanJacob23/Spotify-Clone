@@ -7,6 +7,7 @@ import { UserPlaylist } from "@/types/playlist";
 import SearchBar from "@/components/SearchBar";
 import UserAvatar from "@/components/UserAvatar";
 import SyncSpotify from "@/components/SyncSpotify";
+import AudioPlayer from "@/components/AudioPlayer";
 
 async function fetchUser(
   accessToken: string | undefined
@@ -61,19 +62,22 @@ export default async function ClientLayout({
   const user = await fetchUser(token?.value);
   const userPlaylists = await fetchUserPlaylists(token?.value);
   return (
-    <main className="flex pt-3">
-      <SideNav userPlaylists={userPlaylists} />
+    <>
+      <main className="flex pt-3">
+        <SideNav userPlaylists={userPlaylists} />
 
-      <section className="flex flex-col h-full w-full md:w-9/12 px-2 space-y-3">
-        <div className="flex items-center justify-between rounded-lg bg-background-variant-color px-3 py-4 sticky top-0">
-          <div>
-            <SearchBar token={token?.value} />
+        <section className="flex flex-col h-full w-full md:w-9/12 px-2 space-y-3">
+          <div className="flex items-center justify-between rounded-lg bg-background-variant-color px-3 py-4 sticky top-0">
+            <div>
+              <SearchBar token={token?.value} />
+            </div>
+            {user ? <UserAvatar name={user.display_name} /> : <SyncSpotify />}
           </div>
-          {user ? <UserAvatar name={user.display_name} /> : <SyncSpotify />}
-        </div>
 
-        {children}
-      </section>
-    </main>
+          {children}
+        </section>
+      </main>
+      <AudioPlayer />
+    </>
   );
 }

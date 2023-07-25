@@ -11,9 +11,10 @@ import Backward from "@/components/Backward";
 import Forward from "@/components/Forward";
 import Link from "next/link";
 import { Home, Search } from "lucide-react";
+import { Storage, Client } from "appwrite";
+import FreeSongsCard from "@/components/FreeSongsCard";
 
 async function fetchSpotifyAccessToken(): Promise<AccessToken> {
-  console.log(process.env.URL);
   const res = await fetch(`${process.env.URL}/api/token`, {
     cache: "no-store",
   });
@@ -98,7 +99,18 @@ export default async function page() {
   const { albums } = await fetchNewReleases(accessTokenRes.access_token);
   const artists = await fetchUserArtists(token?.value);
   const tracks = await fetchUserTracks(token?.value);
+  const client = new Client();
+  const storage = new Storage(client);
+  const songsBucketID = "64bf9f9987ee7e365f94";
+  const thumbnailBucketID = "64bfa930e0307cc49e29";
+  client
+    .setEndpoint("https://cloud.appwrite.io/v1")
+    .setProject("64bf9f8b52afd4ab891d");
 
+  const { files: songsBucket } = await storage.listFiles(songsBucketID);
+  const { files: thumbnailsBucket } = await storage.listFiles(
+    thumbnailBucketID
+  );
   return (
     <section className="text-white rounded-lg bg-background-variant-color h-full w-full px-3 py-4 overflow-y-scroll">
       {/* navigation for mobile view */}
@@ -138,7 +150,7 @@ export default async function page() {
         <ScrollArea className="w-full">
           <div className="flex flex-row gap-2">
             {albums.items.map((album) => (
-              <div key={album.id} className="w-36 md:w-auto">
+              <div key={album.id} className="w-36 md:w-auto cursor-pointer">
                 <SpotifyCard
                   image={album.images[0]}
                   name={album.name}
@@ -150,6 +162,35 @@ export default async function page() {
           </div>
         </ScrollArea>
       </section>
+
+      {/* free songs section */}
+      <section className="flex flex-col mt-3">
+        <h1 className="text-xl md:text-2xl font-semibold hover:underline cursor-pointer mb-3">
+          Free Songs!!
+        </h1>
+
+        {/* free songs card */}
+        <ScrollArea className="w-full">
+          <div className="flex flex-row gap-2">
+            {songsBucket.map((song, index) => (
+              <div key={song.$id} className="w-36 md:w-auto">
+                <FreeSongsCard
+                  name={song.name.replace(".mp3", "")}
+                  image={
+                    storage.getFileView(
+                      thumbnailBucketID,
+                      thumbnailsBucket[index].$id
+                    ).href
+                  }
+                  audio={storage.getFileView(songsBucketID, song.$id).href}
+                />
+              </div>
+            ))}
+            <ScrollBar orientation="horizontal" />
+          </div>
+        </ScrollArea>
+      </section>
+
       {token && (
         <>
           <section className="flex flex-col mt-10">

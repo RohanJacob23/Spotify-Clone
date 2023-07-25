@@ -8,6 +8,7 @@ export async function fetchAccessToken(
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams(postBody),
+    cache: "no-store",
   });
   return res.json();
 }

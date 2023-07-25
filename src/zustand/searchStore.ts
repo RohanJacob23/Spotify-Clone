@@ -8,12 +8,12 @@ type SearchResponse = {
   albums?: SearchResult;
 };
 
-interface searchState {
+interface SearchState {
   searchResult: SearchResponse | null;
   setSearchResult: (result: SearchResponse) => void;
 }
 
-export const useSearchStore = create<searchState>((set) => ({
+export const useSearchStore = create<SearchState>((set) => ({
   searchResult: null,
   setSearchResult: (result) => set({ searchResult: result }),
 }));

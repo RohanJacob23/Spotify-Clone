@@ -1,5 +1,5 @@
 "use client";
-import { useSearchStore } from "@/zustand/store";
+import { useSearchStore } from "@/zustand/searchStore";
 import React from "react";
 import SpotifyCard from "./SpotifyCard";
 
@@ -8,7 +8,7 @@ export default function SearchResults() {
   const list = searchResults ? Object.entries(searchResults) : null;
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 items-stretch justify-center">
+    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-4 items-stretch justify-center">
       {list?.map(([key, value]) =>
         value.items.map((item) => (
           <div key={item.id} className="max-w-[18rem]">

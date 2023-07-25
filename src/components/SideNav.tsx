@@ -1,4 +1,4 @@
-import { Home, Search, Library, Plus } from "lucide-react";
+import { Home, Search, Library } from "lucide-react";
 import React from "react";
 import { ScrollArea } from "./ui/scroll-area";
 import Link from "next/link";

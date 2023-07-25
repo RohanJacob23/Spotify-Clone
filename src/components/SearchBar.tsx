@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Input } from "./ui/input";
 import { Search } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -21,7 +21,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import axios from "axios";
-import { useSearchStore } from "@/zustand/store";
+import { useSearchStore } from "@/zustand/searchStore";
 
 const spotifyType = [
   {
