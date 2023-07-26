@@ -17,7 +17,6 @@ export async function GET(request: Request) {
   if (code) {
     postBody.code = code;
     const res = await fetchAccessToken(postBody);
-    console.log("IF ", res);
 
     cookies().set("token", res.access_token);
     cookies().set("refresh_token", res.refresh_token);

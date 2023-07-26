@@ -11,6 +11,5 @@ export async function GET(request: Request) {
     client_secret: "15d61170883144449553e2529850c153",
   };
   const res = await fetchAccessToken(postBody);
-  console.log("ELSE ", res);
   return NextResponse.json(res);
 }

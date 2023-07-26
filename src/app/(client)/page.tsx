@@ -111,8 +111,6 @@ export default async function page() {
   const { files: thumbnailsBucket } = await storage.listFiles(
     thumbnailBucketID
   );
-  const temp = storage.getFileView(thumbnailBucketID, "64c12a9346326dfbdedc");
-  console.log(temp);
   return (
     <section className="text-white rounded-lg bg-background-variant-color h-full w-full px-3 py-4 overflow-y-scroll">
       {/* navigation for mobile view */}
@@ -178,13 +176,12 @@ export default async function page() {
               <div key={song.$id} className="w-36 md:w-auto">
                 <FreeSongsCard
                   name={song.name.replace(".mp3", "")}
-                  // image={
-                  //   storage.getFileView(
-                  //     thumbnailBucketID,
-                  //     thumbnailsBucket[index].$id
-                  //   ).href
-                  // }
-                  image={temp.href}
+                  image={
+                    storage.getFileView(
+                      thumbnailBucketID,
+                      thumbnailsBucket[index].$id
+                    ).href
+                  }
                   audio={storage.getFileView(songsBucketID, song.$id).href}
                 />
               </div>
