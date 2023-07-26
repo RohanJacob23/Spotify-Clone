@@ -74,6 +74,7 @@
   }
   html {
     @apply dark;
+    -webkit-tap-highlight-color: transparent;
   }
   html,
   body,
