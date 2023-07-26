@@ -1,34 +1,65 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Spotify Clone
 
-## Getting Started
+I developed a personal project that is a Spotify clone web app. It is a platform that can be synced with the user's actual spotify account and fetches data from it. The users can search for music tracks, playlist, artists and albums.
 
-First, run the development server:
+
+## Demo
+
+https://spotify-clone-sepia-sigma.vercel.app
+
+
+
+## Features
+
+- List of songs
+- Three Free Songs
+- User's Playlists and track preference
+- Search feature
+- Responsive Design
+
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`SPOTIFY_CLIENT_ID=`
+`SPOTIFY_CLIENT_SECRET=`
+
+`URL="http://localhost:3000"`
+
+
+## Run Locally
+
+Clone the project
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+  git clone https://github.com/RohanJacob23/Spotify-Clone.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Go to the project directory
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+  cd Spotify-Clone
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Install dependencies
 
-## Learn More
+```bash
+  npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+Start the server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+  npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Built with
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [React](https://reactjs.org/)
+- [Next js](https://nextjs.org/)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [Tailwindcss](https://tailwindcss.com/)
+- [SpotifyAPI](https://developer.spotify.com/)
+- [Appwrite](https://appwrite.io/)
